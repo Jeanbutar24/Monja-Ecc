@@ -1,0 +1,109 @@
+.containerCart {
+  padding: 20px;
+}
+.containerCart .title {
+  font-weight: 300;
+  text-align: center;
+}
+.containerCart .top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+}
+.containerCart .top .topButton {
+  padding: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  background-color: black;
+  color: white;
+}
+
+.containerCart .top .topTexts .topText {
+  text-decoration: underline;
+  cursor: pointer;
+  margin: 0 10px;
+}
+.containerCart .bottom {
+  display: flex;
+  justify-content: space-between;
+}
+.containerCart .bottom .info {
+  flex: 3;
+}
+.containerCart .bottom .info .product {
+  display: flex;
+  justify-content: space-between;
+}
+.containerCart .bottom .info .product .productDetail {
+  flex: 2;
+  display: flex;
+  box-shadow: 2px -20px 36px 0px rgba(0, 0, 0, 0.75) inset;
+  -webkit-box-shadow: 2px -20px 36px 0px rgba(0, 0, 0, 0.75) inset;
+  -moz-box-shadow: 2px -20px 36px 0px rgba(0, 0, 0, 0.75) inset;
+}
+.containerCart .bottom .info .product .productDetail img {
+  width: 200px;
+}
+.containerCart .bottom .info .product .productDetail .details {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.containerCart .bottom .info .product .productDetail .details .productColor {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: black;
+}
+.containerCart .bottom .info .product .priceDetail {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.containerCart .bottom .info .product .priceDetail .productAmountContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.productAmountContainer .productAmount {
+  font-size: 24px;
+  margin: 5px;
+}
+.productAmountContainer .productPrice {
+  font-size: 30px;
+  font-weight: 200;
+}
+.containerCart .bottom .summary {
+  flex: 1;
+  border: 0.5px solid lightgray;
+  border-radius: 10px;
+  padding: 20px;
+  height: 50vh;
+}
+.containerCart .bottom .summary .summaryTitle {
+  font-weight: 200;
+}
+.containerCart .bottom .summary .summaryItem {
+  margin: 30px 0px;
+  display: flex;
+  justify-content: space-between;
+}
+.summaryItem:nth-child(5) {
+  margin: 30px 0px;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+  font-size: 24px;
+}
+.bottom button {
+  width: 100%;
+  padding: 10px;
+  background-color: black;
+  color: white;
+  font-weight: 600;
+}
