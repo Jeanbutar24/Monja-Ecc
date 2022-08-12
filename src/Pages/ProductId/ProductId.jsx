@@ -2,7 +2,37 @@ import "./ProductId.css";
 import { plus, minus } from "../../icons";
 import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { publicRequest } from "../../requestMethods";
+import NewsLetter from "../../Components/NewsLetter/NewsLetter";
+
 const ProductId = () => {
+  const location = useLocation();
+  const id = location.pathname.split("/")[2];
+  const [product, setProduct] = useState({});
+  const [quantity, setQuantity] = useState(1);
+
+  const handleQuantity = (item) => {
+    if (item === "plus") {
+      setQuantity(quantity + 1);
+    } else if (item === "minus" && quantity > 1) {
+      setQuantity(quantity - 1);
+    } else {
+      return false;
+    }
+  };
+
+  useEffect(() => {
+    const getProduct = async () => {
+      const response = await publicRequest.get(`/product/${id}`);
+      try {
+        setProduct(response.data);
+      } catch (error) {}
+    };
+    getProduct();
+  }, [id]);
+
   return (
     <>
       <Header />
@@ -10,53 +40,46 @@ const ProductId = () => {
       <div className="containerProductId">
         <div className="wrapper">
           <div className="imageContainer">
-            <img src="https://i.ibb.co/djNb12m/kaos-jean.png" alt="" />
+            <img src={product.img} alt="" />
           </div>
           <div className="infoContainer">
-            <h1 className="title">Kaos Anti Air</h1>
-            <p className="desc">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem,
-              deleniti, ut facilis quibusdam laboriosam illum maxime ratione
-              quasi similique quaerat iste ab provident earum eveniet.
-            </p>
-            <span className="price">Rp 60000,00</span>
+            <h1 className="title">{product.title}</h1>
+            <p className="desc">{product.desc}</p>
+            <span className="price">Rp {product.price},00</span>
             <div className="filterContainer">
               <div className="filter">
                 <span className="filterTitle">Color</span>
-                <div
-                  className="filterColor"
-                  style={{ backgroundColor: "black" }}
-                />
-                <div
-                  className="filterColor"
-                  style={{ backgroundColor: "darkblue" }}
-                />
-                <div
-                  className="filterColor"
-                  style={{ backgroundColor: "gray" }}
-                />
+                <select>
+                  {product.color?.map((color, index) => (
+                    <option key={index}>{color}</option>
+                  ))}
+                </select>
               </div>
               <div className="filter">
                 <span className="filterTitle">Size</span>
                 <select>
-                  <option>XS</option>
-                  <option>S</option>
-                  <option>M</option>
-                  <option>L</option>
-                  <option>XL</option>
+                  {product.size?.map((size, index) => (
+                    <option key={index}>{size}</option>
+                  ))}
                 </select>
               </div>
             </div>
             <div className="addContainer">
               <div className="amountContainer">
-                <img src={minus} alt="search" width={25} height={25} />
-                <span className="amount">1</span>
-                <img src={plus} alt="search" width={25} height={25} />
+                <div onClick={() => handleQuantity("minus")}>
+                  <img src={minus} alt="search" width={25} height={25} />
+                </div>
+                <span className="amount">{quantity}</span>
+                <div onClick={() => handleQuantity("plus")}>
+                  <img src={plus} alt="search" width={25} height={25} />
+                </div>
               </div>
               <button>ADD TO CART</button>
             </div>
           </div>
         </div>
+
+        <NewsLetter />
       </div>
       <Footer />
     </>

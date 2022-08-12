@@ -16,4 +16,5 @@
 }
 .containerProducts .title {
   cursor: pointer;
+  color: black;
 }

@@ -80,3 +80,7 @@
   font-weight: 600;
   position: absolute;
 }
+
+.link {
+  text-decoration: none;
+}

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { cart, search } from "../../icons/index";
 import "./Header.css";
 const Header = () => {
@@ -12,13 +13,21 @@ const Header = () => {
           </div>
         </div>
         <div className="center">
-          <h1 className="logo">Monja Collection</h1>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <h1 className="logo">Monja Collection</h1>
+          </Link>
         </div>
         <div className="right">
-          <div className="menuItem">REGISTER</div>
-          <div className="menuItem">SIGN IN</div>
+          <Link to="/login" style={{ textDecoration: "none" }}>
+            <div className="menuItem">SIGN UP</div>
+          </Link>
+          <Link to="/register" style={{ textDecoration: "none" }}>
+            <div className="menuItem">SIGN IN</div>
+          </Link>
           <div className="menuCart">
-            <img src={cart} alt="search" width={30} height={30} />
+            <Link to="/cart" style={{ textDecoration: "none" }}>
+              <img src={cart} alt="search" width={30} height={30} />
+            </Link>
             <div className="count">1</div>
           </div>
         </div>

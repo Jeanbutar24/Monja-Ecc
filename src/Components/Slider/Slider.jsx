@@ -2,6 +2,7 @@ import "./Slider.css";
 import { sliderItems } from "../../data";
 import { left, right } from "../../icons/index";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 const Slider = () => {
   const [slideIndex, setSlideIndex] = useState(0);
   const handleClick = (direction) => {
@@ -33,7 +34,9 @@ const Slider = () => {
             <div className={`info`}>
               <h1>{item.title}</h1>
               <p>{item.desc}</p>
-              <button>Buy Me</button>
+              <Link to="/product" style={{ textDecoration: "none" }}>
+                <button>Buy Me</button>
+              </Link>
             </div>
           </div>
         ))}
