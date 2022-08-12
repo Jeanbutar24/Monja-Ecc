@@ -19,7 +19,7 @@ const Products = ({ item }) => {
         onMouseLeave={onMouseLeave}>
         {title}
       </h2>
-      <p>{item.harga}</p>
+      <p>Rp {item.price},00</p>
     </div>
   );
 };
