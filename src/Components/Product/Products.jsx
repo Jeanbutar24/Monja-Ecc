@@ -11,6 +11,7 @@ const Products = ({ item }) => {
   const onMouseLeave = () => {
     setTitle(item.title);
   };
+  const price = item.price.toLocaleString();
   return (
     <div className="containerProducts">
       <img src={item.img} alt={item.title} />
@@ -22,7 +23,7 @@ const Products = ({ item }) => {
           {title}
         </h2>
       </Link>
-      <p>Rp {item.price},00</p>
+      <p>Rp {price},00</p>
     </div>
   );
 };

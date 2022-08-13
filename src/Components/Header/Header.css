@@ -59,7 +59,13 @@
   color: aliceblue;
   font-weight: 500;
 }
-
+.container .wrapper .right .menuUser {
+  font-size: 23px;
+  text-transform: uppercase;
+  margin-left: 25px;
+  color: aliceblue;
+  font-weight: 500;
+}
 .container .wrapper .right .menuCart {
   position: relative;
   display: flex;

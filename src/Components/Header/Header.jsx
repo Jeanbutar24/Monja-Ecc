@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import { cart, search } from "../../icons/index";
 import "./Header.css";
+import { useSelector } from "react-redux";
+
 const Header = () => {
+  const quantity = useSelector((state) => state.cart.quantity);
+  const user = useSelector((state) => state.user.currentUser);
   return (
     <div className="container">
       <div className="wrapper">
@@ -18,18 +22,26 @@ const Header = () => {
           </Link>
         </div>
         <div className="right">
-          <Link to="/login" style={{ textDecoration: "none" }}>
-            <div className="menuItem">SIGN UP</div>
-          </Link>
-          <Link to="/register" style={{ textDecoration: "none" }}>
-            <div className="menuItem">SIGN IN</div>
-          </Link>
-          <div className="menuCart">
-            <Link to="/cart" style={{ textDecoration: "none" }}>
-              <img src={cart} alt="search" width={30} height={30} />
-            </Link>
-            <div className="count">1</div>
-          </div>
+          {user ? (
+            <>
+              <div className="menuUser">{user.username}</div>
+              <div className="menuCart">
+                <Link to="/cart" style={{ textDecoration: "none" }}>
+                  <img src={cart} alt="search" width={30} height={30} />
+                </Link>
+                {quantity > 0 ? <div className="count">{quantity}</div> : ""}
+              </div>
+            </>
+          ) : (
+            <>
+              <Link to="/register" style={{ textDecoration: "none" }}>
+                <div className="menuItem">SIGN UP</div>
+              </Link>
+              <Link to="/login" style={{ textDecoration: "none" }}>
+                <div className="menuItem">SIGN IN</div>
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </div>

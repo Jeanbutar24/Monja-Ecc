@@ -32,40 +32,37 @@
 .containerCart .bottom .info {
   flex: 3;
 }
-.containerCart .bottom .info .product {
+.bottom .info .product {
   display: flex;
   justify-content: space-between;
 }
-.containerCart .bottom .info .product .productDetail {
+.info .product .productDetail {
   flex: 2;
   display: flex;
   box-shadow: 2px -20px 36px 0px rgba(0, 0, 0, 0.75) inset;
   -webkit-box-shadow: 2px -20px 36px 0px rgba(0, 0, 0, 0.75) inset;
   -moz-box-shadow: 2px -20px 36px 0px rgba(0, 0, 0, 0.75) inset;
 }
-.containerCart .bottom .info .product .productDetail img {
+.info .product .productDetail img {
   width: 200px;
 }
-.containerCart .bottom .info .product .productDetail .details {
+.product .productDetail .details {
   padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
-.containerCart .bottom .info .product .productDetail .details .productColor {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: black;
+.product .productDetail .details .productColor {
+  font-weight: 500;
 }
-.containerCart .bottom .info .product .priceDetail {
+.info .product .priceDetail {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.containerCart .bottom .info .product .priceDetail .productAmountContainer {
+.product .priceDetail .productAmountContainer {
   display: flex;
   align-items: center;
   margin-bottom: 20px;

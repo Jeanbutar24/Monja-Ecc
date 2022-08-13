@@ -6,13 +6,17 @@ import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { publicRequest } from "../../requestMethods";
 import NewsLetter from "../../Components/NewsLetter/NewsLetter";
+import { addProducts } from "../../redux/CartSlice";
+import { useDispatch } from "react-redux";
 
 const ProductId = () => {
   const location = useLocation();
   const id = location.pathname.split("/")[2];
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
-
+  const [size, setSize] = useState("");
+  const [color, setColor] = useState("");
+  const dispatch = useDispatch();
   const handleQuantity = (item) => {
     if (item === "plus") {
       setQuantity(quantity + 1);
@@ -33,6 +37,11 @@ const ProductId = () => {
     getProduct();
   }, [id]);
 
+  const addToCart = () => {
+    dispatch(addProducts({ ...product, quantity, size, color }));
+  };
+  const price = product.price;
+
   return (
     <>
       <Header />
@@ -45,11 +54,14 @@ const ProductId = () => {
           <div className="infoContainer">
             <h1 className="title">{product.title}</h1>
             <p className="desc">{product.desc}</p>
-            <span className="price">Rp {product.price},00</span>
+            <span className="price">Rp {price},00</span>
             <div className="filterContainer">
               <div className="filter">
                 <span className="filterTitle">Color</span>
-                <select>
+                <select onChange={(e) => setColor(e.target.value)}>
+                  <option disabled selected>
+                    Set Color
+                  </option>
                   {product.color?.map((color, index) => (
                     <option key={index}>{color}</option>
                   ))}
@@ -57,7 +69,10 @@ const ProductId = () => {
               </div>
               <div className="filter">
                 <span className="filterTitle">Size</span>
-                <select>
+                <select onChange={(e) => setSize(e.target.value)}>
+                  <option disabled selected>
+                    Set Size
+                  </option>
                   {product.size?.map((size, index) => (
                     <option key={index}>{size}</option>
                   ))}
@@ -74,7 +89,7 @@ const ProductId = () => {
                   <img src={plus} alt="search" width={25} height={25} />
                 </div>
               </div>
-              <button>ADD TO CART</button>
+              <button onClick={addToCart}>ADD TO CART</button>
             </div>
           </div>
         </div>

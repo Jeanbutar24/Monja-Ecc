@@ -11,6 +11,12 @@
   flex-direction: column;
   align-items: center;
 }
+.containerLogin .wrapper form {
+  width: max-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .username,
 .password {
   padding: 10px;
