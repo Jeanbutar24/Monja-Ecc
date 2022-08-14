@@ -2,20 +2,22 @@ import "./ProductId.css";
 import { plus, minus } from "../../icons";
 import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { publicRequest } from "../../requestMethods";
 import NewsLetter from "../../Components/NewsLetter/NewsLetter";
 import { addProducts } from "../../redux/CartSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const ProductId = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const id = location.pathname.split("/")[2];
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
   const [size, setSize] = useState("");
   const [color, setColor] = useState("");
+  const user = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
   const handleQuantity = (item) => {
     if (item === "plus") {
@@ -89,7 +91,11 @@ const ProductId = () => {
                   <img src={plus} alt="search" width={25} height={25} />
                 </div>
               </div>
-              <button onClick={addToCart}>ADD TO CART</button>
+              {user ? (
+                <button onClick={addToCart}>ADD TO CART</button>
+              ) : (
+                <button onClick={() => navigate("/login")}>ADD TO CART</button>
+              )}
             </div>
           </div>
         </div>

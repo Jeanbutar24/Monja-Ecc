@@ -13,6 +13,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Profile from "./Pages/Profile/Profile";
 const App = () => {
   const user = useSelector((state) => state.user.currentUser);
   return (
@@ -22,6 +23,11 @@ const App = () => {
           <Route path="/">
             <Route index element={<Home />} />
             <Route path="cart" element={<Cart />} />
+            {user ? (
+              <Route path="profile" element={<Profile />} />
+            ) : (
+              <Route path="*" element={<Navigate to="/" replace />} />
+            )}
             {user ? (
               <Route path="*" element={<Navigate to="/" replace />} />
             ) : (

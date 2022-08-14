@@ -1,5 +1,5 @@
 import search from "./search.png";
-import email from "./email.png";
+import emailIcon from "./email.png";
 import facebook from "./facebook.png";
 import instagram from "./instagram.png";
 import home from "./home.png";
@@ -21,7 +21,7 @@ export {
   left,
   right,
   search,
-  email,
+  emailIcon,
   facebook,
   home,
   cart,

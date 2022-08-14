@@ -1,5 +1,6 @@
 .containerFooter {
   display: flex;
+  background-color: #fff9d7;
 }
 .containerFooter .left {
   flex: 1;

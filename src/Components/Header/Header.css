@@ -1,6 +1,6 @@
 .container {
   height: 60px;
-  background-color: #513252;
+  background-color: #610c63;
 }
 
 .container .wrapper {
@@ -59,17 +59,25 @@
   color: aliceblue;
   font-weight: 500;
 }
-.container .wrapper .right .menuUser {
-  font-size: 23px;
+.container .wrapper .right .menuUser .list {
+  list-style: none;
+  display: flex;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: aliceblue;
+  font-weight: 500;
+}
+.container .wrapper .right .menuUser .list .listItem {
   text-transform: uppercase;
   margin-left: 25px;
   color: aliceblue;
   font-weight: 500;
+  cursor: pointer;
 }
 .container .wrapper .right .menuCart {
   position: relative;
   display: flex;
-  margin-left: 25px;
+  margin-right: 25px;
   padding: 8px;
 }
 .container .wrapper .right .menuCart .count {

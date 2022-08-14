@@ -1,5 +1,12 @@
 import "./Footer.css";
-import { facebook, twitter, instagram, home, call, email } from "../../icons";
+import {
+  facebook,
+  twitter,
+  instagram,
+  home,
+  call,
+  emailIcon,
+} from "../../icons";
 const Footer = () => {
   return (
     <div className="containerFooter">
@@ -60,7 +67,7 @@ const Footer = () => {
         </div>
         <div className="contactItem">
           <img
-            src={email}
+            src={emailIcon}
             alt="search"
             style={{ marginRight: "10px" }}
             width={25}

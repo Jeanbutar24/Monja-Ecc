@@ -2,18 +2,20 @@ import "./Cart.css";
 import { plus, minus } from "../../icons";
 import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
 import { useEffect, useState } from "react";
 import { userRequest } from "../../requestMethods";
 import { useNavigate } from "react-router-dom";
+import { removeProduct } from "../../redux/CartSlice";
 const KEY =
   "pk_test_51LOGjFKTe3edRc5tHC3nfOB54Bv00g13H14VoKoHNZBfYA7Aq05LBXtbFjtJu8RN25iMaKJ3NNndaFOM67WKudDq003k7yBPrJ";
 
 const Cart = () => {
   const navigate = useNavigate();
   const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
   const [stripeToken, setStripeToken] = useState(null);
   const ongkir = cart.products.length > 0 ? 24000 : 0;
   const discount = cart.products.length > 0 ? 14000 : 0;
@@ -36,6 +38,10 @@ const Cart = () => {
     };
     stripeToken && makeRequest();
   }, [stripeToken, cart.total, navigate]);
+
+  const removeProductItem = () => {
+    dispatch(removeProduct());
+  };
   return (
     <>
       <Header />
@@ -73,6 +79,9 @@ const Cart = () => {
                   </div>
                 </div>
                 <div className="priceDetail">
+                  <div onClick={() => removeProductItem()}>
+                    <img src={minus} alt="search" width={25} height={25} />
+                  </div>
                   <div className="productAmountContainer">
                     <img src={minus} alt="search" width={25} height={25} />
                     <div className="productAmount">{item.quantity}</div>

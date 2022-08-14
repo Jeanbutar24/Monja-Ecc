@@ -1,11 +1,16 @@
 import { Link } from "react-router-dom";
 import { cart, search } from "../../icons/index";
 import "./Header.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../redux/UserSlice";
 
 const Header = () => {
   const quantity = useSelector((state) => state.cart.quantity);
   const user = useSelector((state) => state.user.currentUser);
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(logout(null));
+  };
   return (
     <div className="container">
       <div className="wrapper">
@@ -24,12 +29,27 @@ const Header = () => {
         <div className="right">
           {user ? (
             <>
-              <div className="menuUser">{user.username}</div>
+              <div className="menuUser">
+                <ul className="list">
+                  <li className="listItem">Home</li>
+                  <Link to="/profile">
+                    <li className="listItem">Profile</li>
+                  </Link>
+                  {user.isAdmin ? <li className="listItem">Dashboard</li> : ""}
+                  <li className="listItem">About</li>
+                </ul>
+              </div>
+
               <div className="menuCart">
                 <Link to="/cart" style={{ textDecoration: "none" }}>
                   <img src={cart} alt="search" width={30} height={30} />
                 </Link>
                 {quantity > 0 ? <div className="count">{quantity}</div> : ""}
+              </div>
+              <div
+                style={{ color: "white", cursor: "pointer" }}
+                onClick={handleLogout}>
+                Logout
               </div>
             </>
           ) : (

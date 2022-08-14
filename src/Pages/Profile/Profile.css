@@ -1,0 +1,50 @@
+.containerProfile {
+  display: flex;
+}
+.containerProfile .left {
+  flex: 1;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  background-color: #513252;
+}
+
+.containerProfile .left .sideBar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+.left .sideBar .list {
+  height: 50%;
+  list-style: none;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.left .sideBar .list .listItem {
+  padding: 5px;
+  font-size: 17px;
+  cursor: pointer;
+}
+.left .sideBar .ends {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.left .sideBar .ends .endItem {
+  padding: 5px;
+  font-size: 17px;
+  cursor: pointer;
+}
+.sideBar .ends .endItem:nth-child(2) {
+  margin-bottom: 20px;
+}
+.containerProfile .right {
+  flex: 5;
+  background-color: black;
+}
