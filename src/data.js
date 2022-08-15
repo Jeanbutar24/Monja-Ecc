@@ -25,31 +25,31 @@ export const sliderItems = [
 export const categories = [
   {
     id: 1,
-    title: "KEMEJA",
+    title: "man",
   },
   {
     id: 2,
-    title: "CELANA",
+    title: "bag",
   },
   {
     id: 3,
-    title: "JACKET",
+    title: "shirt",
   },
   {
     id: 4,
-    title: "SEPATU",
+    title: "jacket",
   },
   {
     id: 5,
-    title: "PAKAIAN",
+    title: "sweater",
   },
   {
     id: 6,
-    title: "KAOS",
+    title: "boxer",
   },
   {
     id: 7,
-    title: "TOPI",
+    title: "hat",
   },
 ];
 

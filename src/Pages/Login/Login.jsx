@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../../Components/Header/Header";
 import "./Login.css";
 import { padlock, person } from "../../icons/index";
@@ -8,11 +8,13 @@ import { login } from "../../redux/APIuser";
 const Login = () => {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
+  const navigate = useNavigate();
   const error = useSelector((state) => state.user.error);
   const dispatch = useDispatch();
   const handleLogin = (e) => {
     e.preventDefault();
     login(dispatch, { username, password });
+    navigate("/");
   };
   return (
     <>
@@ -38,7 +40,11 @@ const Login = () => {
               />
             </div>
             <button onClick={handleLogin}>Login</button>
-            {error && <span style={{ color: "red" }}> Something Wrong</span>}
+            {error ? (
+              <span style={{ color: "red" }}> Something Wrong</span>
+            ) : (
+              ""
+            )}
           </form>
 
           <Link to="/register">

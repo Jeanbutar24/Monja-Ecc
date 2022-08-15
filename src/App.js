@@ -14,15 +14,28 @@ import {
 } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Profile from "./Pages/Profile/Profile";
+// import Dashboard from "./Pages/Dashboard/Dashboard";
 const App = () => {
+  // const admin = JSON.parse(
+  //   JSON.parse(localStorage.getItem("persist:root")).user
+  // ).currentUser.isAdmin;
   const user = useSelector((state) => state.user.currentUser);
+  // {admin ? (
+  //   <Route path="dashboard" element={<Dashboard />} />
+  // ) : (
+  //   <Route path="*" element={<Navigate to="/" replace />} />
+  // )}
   return (
     <div>
       <Router>
         <Routes>
           <Route path="/">
             <Route index element={<Home />} />
-            <Route path="cart" element={<Cart />} />
+            {user ? (
+              <Route path="cart" element={<Cart />} />
+            ) : (
+              <Route path="*" element={<Navigate to="/" replace />} />
+            )}
             {user ? (
               <Route path="profile" element={<Profile />} />
             ) : (

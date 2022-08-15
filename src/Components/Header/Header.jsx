@@ -5,9 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/UserSlice";
 
 const Header = () => {
-  const quantity = useSelector((state) => state.cart.quantity);
+  const products = useSelector((state) => state.cart.products);
+  const quantity = products.length;
+ 
   const user = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
+
   const handleLogout = () => {
     dispatch(logout(null));
   };
@@ -32,10 +35,16 @@ const Header = () => {
               <div className="menuUser">
                 <ul className="list">
                   <li className="listItem">Home</li>
-                  <Link to="/profile">
+                  <Link to="/profile" style={{ textDecoration: "none" }}>
                     <li className="listItem">Profile</li>
                   </Link>
-                  {user.isAdmin ? <li className="listItem">Dashboard</li> : ""}
+                  {user.isAdmin ? (
+                    <Link to="/dashboard" style={{ textDecoration: "none" }}>
+                      <li className="listItem">Dashboard</li>
+                    </Link>
+                  ) : (
+                    ""
+                  )}
                   <li className="listItem">About</li>
                 </ul>
               </div>

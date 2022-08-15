@@ -6,8 +6,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { publicRequest } from "../../requestMethods";
 import NewsLetter from "../../Components/NewsLetter/NewsLetter";
-import { addProducts } from "../../redux/CartSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { postCart } from "../../redux/APIuser";
 
 const ProductId = () => {
   const location = useLocation();
@@ -40,7 +40,16 @@ const ProductId = () => {
   }, [id]);
 
   const addToCart = () => {
-    dispatch(addProducts({ ...product, quantity, size, color }));
+    postCart(dispatch, {
+      userID: user._id,
+      productID: product._id,
+      quantity: quantity,
+      size: size,
+      color: color,
+      price: product.price,
+      img: product.img,
+      title: product.title,
+    });
   };
   const price = product.price;
 

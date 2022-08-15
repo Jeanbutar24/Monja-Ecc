@@ -24,20 +24,24 @@ const Product = ({ category, sort, filter }) => {
 
   useEffect(() => {
     if (category) {
-      setFilterProducts(
-        products.filter((item) =>
-          Object.entries(filter).every(([key, value]) =>
-            item[key].includes(value)
+      if (filter.size === "" && filter.color === "") {
+        setFilterProducts(products);
+      } else {
+        setFilterProducts(
+          products.filter((item) =>
+            Object.entries(filter).every(([key, value]) =>
+              item[key].includes(value)
+            )
           )
-        )
-      );
+        );
+      }
     }
   }, [category, products, filter]);
 
   useEffect(() => {
     if (sort === "newest") {
       setFilterProducts((prev) =>
-        [...prev].sort((a, b) => a.createdAt - b.createdAt)
+        [...prev].sort((a, b) => b.createdAt - a.createdAt)
       );
     } else if (sort === "low") {
       setFilterProducts((prev) => [...prev].sort((a, b) => a.price - b.price));

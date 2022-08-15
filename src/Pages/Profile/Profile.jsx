@@ -1,14 +1,16 @@
 import "./Profile.css";
 import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
+import Sidebar from "../../Components/Sidebar/Sidebar";
+import ProfileComponent from "../../Components/Profile/ProfileComponent";
 const Profile = () => {
   return (
-    <div>
+    <>
       <Header />
       <div className="containerProfile">
         <div className="left">
           <div className="sideBar">
-            <ul className="list">
+            {/* <ul className="list">
               <h1 className="name">Ucok</h1>
               <li className="listItem">Profile</li>
               <li className="listItem">Wallet</li>
@@ -18,13 +20,16 @@ const Profile = () => {
             <div className="ends">
               <span className="endItem">Service</span>
               <span className="endItem">Logout</span>
-            </div>
+            </div> */}
+            <Sidebar />
           </div>
         </div>
-        <div className="right">User Info</div>
+        <div className="right">
+          <ProfileComponent />
+        </div>
       </div>
       <Footer />
-    </div>
+    </>
   );
 };
 

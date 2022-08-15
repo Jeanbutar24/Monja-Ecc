@@ -39,11 +39,10 @@
 .info .product .productDetail {
   flex: 2;
   display: flex;
-  box-shadow: 2px -20px 36px 0px rgba(0, 0, 0, 0.75) inset;
-  -webkit-box-shadow: 2px -20px 36px 0px rgba(0, 0, 0, 0.75) inset;
-  -moz-box-shadow: 2px -20px 36px 0px rgba(0, 0, 0, 0.75) inset;
+
+  justify-content: space-around;
 }
-.info .product .productDetail img {
+.info .product .productDetail .image {
   width: 200px;
 }
 .product .productDetail .details {
@@ -55,32 +54,36 @@
 .product .productDetail .details .productColor {
   font-weight: 500;
 }
-.info .product .priceDetail {
+.info .product .productDetail .priceDetail {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.product .priceDetail .productAmountContainer {
+.product .productDetail .priceDetail .productAmountContainer {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+}
+.product .productDetail .priceDetail .productPrice {
+  font-size: 30px;
+  font-weight: 200;
 }
 .productAmountContainer .productAmount {
   font-size: 24px;
   margin: 5px;
 }
-.productAmountContainer .productPrice {
-  font-size: 30px;
-  font-weight: 200;
-}
+
 .containerCart .bottom .summary {
   flex: 1;
   border: 0.5px solid lightgray;
   border-radius: 10px;
   padding: 20px;
   height: 50vh;
+  box-shadow: 2px -20px 36px 0px rgba(0, 0, 0, 0.75) inset;
+  -webkit-box-shadow: 2px -20px 36px 0px rgba(0, 0, 0, 0.75) inset;
+  -moz-box-shadow: 2px -20px 36px 0px rgba(0, 0, 0, 0.75) inset;
 }
 .containerCart .bottom .summary .summaryTitle {
   font-weight: 200;
@@ -97,7 +100,7 @@
   font-weight: 500;
   font-size: 24px;
 }
-.bottom button {
+.bottom .buttonCart {
   width: 100%;
   padding: 10px;
   background-color: black;
