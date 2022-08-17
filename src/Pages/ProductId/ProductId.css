@@ -87,3 +87,28 @@
   cursor: pointer;
   font-weight: 500;
 }
+@media only screen and (max-width: 600px) {
+  .containerProductId .wrapper {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+  }
+  .wrapper .imageContainer {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+  }
+  .infoContainer .price {
+    font-weight: 100;
+    font-size: 20px;
+  }
+  .wrapper .addContainer button {
+    padding: 15px;
+    border: 2px solid teal;
+    background-color: white;
+    cursor: pointer;
+    font-weight: 500;
+    width: 100%;
+  }
+}

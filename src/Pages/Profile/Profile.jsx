@@ -3,6 +3,7 @@ import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
 import Sidebar from "../../Components/Sidebar/Sidebar";
 import ProfileComponent from "../../Components/Profile/ProfileComponent";
+import Address from "../../Components/Address/Address";
 const Profile = () => {
   return (
     <>
@@ -25,7 +26,8 @@ const Profile = () => {
           </div>
         </div>
         <div className="right">
-          <ProfileComponent />
+          {/* <ProfileComponent /> */}
+          <Address />
         </div>
       </div>
       <Footer />

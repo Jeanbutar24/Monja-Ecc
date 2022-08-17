@@ -66,8 +66,10 @@
   text-transform: uppercase;
   color: aliceblue;
   font-weight: 500;
+  align-items: center;
+  justify-content: center;
 }
-.container .wrapper .right .menuUser .list .listItem {
+.wrapper .right .menuUser .list .listItem {
   text-transform: uppercase;
   margin-left: 25px;
   color: aliceblue;
@@ -79,6 +81,10 @@
   display: flex;
   margin-right: 25px;
   padding: 8px;
+}
+.container .wrapper .right .menuItems {
+  display: flex;
+  align-items: center;
 }
 .container .wrapper .right .menuCart .count {
   display: flex;
@@ -97,4 +103,94 @@
 
 .link {
   text-decoration: none;
+}
+
+@media only screen and (max-width: 380px) {
+  .container {
+    height: 100%;
+  }
+  .container .wrapper {
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .container .wrapper .left .language {
+    display: none;
+  }
+  .wrapper .right .menuUser .list {
+    padding: 0;
+  }
+  .container .wrapper .left .searchContainer {
+    display: none;
+  }
+  .container .wrapper .center .logo {
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  .container .wrapper .right {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .wrapper .right .menuUser .list .listItem {
+    font-size: 12px;
+    margin-left: 8px;
+
+    display: flex;
+    align-items: center;
+  }
+  .container .wrapper .right .menuItem {
+    font-size: 12px;
+    margin-left: 10px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .container {
+    height: 100%;
+  }
+  .container .wrapper {
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .container .wrapper .left .language {
+    display: none;
+  }
+  .wrapper .right .menuUser .list {
+    padding: 0;
+  }
+  .container .wrapper .left .searchContainer {
+    display: none;
+  }
+  .container .wrapper .center .logo {
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  .container .wrapper .right {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .wrapper .right .menuUser .list .listItem {
+    font-size: 12px;
+    margin-left: 8px;
+
+    display: flex;
+    align-items: center;
+  }
+  .container .wrapper .right .menuItems {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .container .wrapper .right .menuItem {
+    font-size: 12px;
+    margin-left: 10px;
+  }
 }

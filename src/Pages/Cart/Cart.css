@@ -107,3 +107,21 @@
   color: white;
   font-weight: 600;
 }
+
+@media only screen and (max-width: 600px) {
+  .containerCart .top .topTexts {
+    display: none;
+  }
+  .containerCart .bottom {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .containerCart .bottom .summary {
+    margin-top: 20px;
+  }
+  .info .product .productDetail .image {
+    width: 100px;
+    height: 100px;
+  }
+}

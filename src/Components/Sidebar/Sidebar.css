@@ -60,3 +60,12 @@
 .sidebar .bottom .colorPicker:nth-child(2) {
   background-color: black;
 }
+@media only screen and (max-width: 600px) {
+  .sidebar {
+    height: auto;
+    margin: 5px;
+  }
+  .sidebar .top .logo {
+    font-size: 18px;
+  }
+}

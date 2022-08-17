@@ -19,3 +19,9 @@
   text-transform: uppercase;
   transition: all 1.5 ease;
 }
+@media only screen and (max-width: 600px) {
+  .categoriesContainer .wrapper .name {
+    color: white;
+    font-size: 12px;
+  }
+}

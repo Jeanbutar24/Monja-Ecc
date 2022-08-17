@@ -1,18 +1,20 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { cart, search } from "../../icons/index";
 import "./Header.css";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/UserSlice";
 
 const Header = () => {
+  const navigate = useNavigate();
   const products = useSelector((state) => state.cart.products);
   const quantity = products.length;
- 
+
   const user = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
 
   const handleLogout = () => {
     dispatch(logout(null));
+    navigate("/");
   };
   return (
     <div className="container">
@@ -48,28 +50,29 @@ const Header = () => {
                   <li className="listItem">About</li>
                 </ul>
               </div>
-
-              <div className="menuCart">
-                <Link to="/cart" style={{ textDecoration: "none" }}>
-                  <img src={cart} alt="search" width={30} height={30} />
-                </Link>
-                {quantity > 0 ? <div className="count">{quantity}</div> : ""}
-              </div>
-              <div
-                style={{ color: "white", cursor: "pointer" }}
-                onClick={handleLogout}>
-                Logout
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <div className="menuCart">
+                  <Link to="/cart" style={{ textDecoration: "none" }}>
+                    <img src={cart} alt="search" width={30} height={30} />
+                  </Link>
+                  {quantity > 0 ? <div className="count">{quantity}</div> : ""}
+                </div>
+                <div
+                  style={{ color: "white", cursor: "pointer" }}
+                  onClick={handleLogout}>
+                  Logout
+                </div>
               </div>
             </>
           ) : (
-            <>
+            <div className="menuItems">
               <Link to="/register" style={{ textDecoration: "none" }}>
                 <div className="menuItem">SIGN UP</div>
               </Link>
               <Link to="/login" style={{ textDecoration: "none" }}>
                 <div className="menuItem">SIGN IN</div>
               </Link>
-            </>
+            </div>
           )}
         </div>
       </div>
