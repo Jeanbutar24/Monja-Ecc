@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { trash } from "../../icons";
 import { userRequest } from "../../requestMethods";
 import "./Address.css";
 const Address = () => {
@@ -9,33 +10,43 @@ const Address = () => {
   const [kabupaten, setKabupaten] = useState("");
   const [provinsi, setProvinsi] = useState("");
   const [negara, setNegara] = useState("");
-  // const [address, setAddress] = useState([]);
+  const [alamat, setAlamat] = useState([]);
   const user = useSelector((state) => state.user.currentUser);
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(jalan, kelurahan, kecamatan, kabupaten, negara);
-
     const postAddress = async () => {
       try {
-        const response = await userRequest.post("/address/addAddress", {
-          userId: user._id,
-          alamat: [
-            {
-              jalan,
-              kelurahan,
-              kecamatan,
-              kabupaten,
-              provinsi,
-              negara,
-            },
-          ],
+        await userRequest.post(`/address/addAddress/${user._id}`, {
+          jalan,
+          kelurahan,
+          kecamatan,
+          kabupaten,
+          provinsi,
+          negara,
         });
-        console.log(response.data);
       } catch (error) {}
     };
     postAddress();
   };
-
+  useEffect(() => {
+    const getAddress = async () => {
+      try {
+        const response = await userRequest.get(
+          `/address/getAddress/${user._id}`
+        );
+        setAlamat(response.data);
+      } catch (error) {
+        alert(error);
+      }
+    };
+    getAddress();
+  }, [user._id, alamat]);
+  const handleRemove = (alamatId) => {
+    const deleteAddress = async () => {
+      await userRequest.delete(`/address/${user._id}/${alamatId}`);
+    };
+    deleteAddress();
+  };
   return (
     <div className="address">
       <div className="containerAddres">
@@ -91,6 +102,15 @@ const Address = () => {
           </div>
           <button className="buttonAddress">Submit</button>
         </form>
+      </div>
+      <div className="addresOption">
+        {alamat.map((item, index) => (
+          <p key={index}>
+            {item.jalan},{item.kelurahan},{item.kecamatan},{item.kabupaten},
+            {item.provinsi},{item.negara}
+            <button onClick={() => handleRemove(item._id)}>Hapus</button>
+          </p>
+        ))}
       </div>
     </div>
   );

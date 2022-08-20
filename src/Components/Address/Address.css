@@ -6,6 +6,7 @@
 }
 .address .containerAddres {
   display: flex;
+
   flex-direction: column;
   padding: 20px;
   width: 60vw;
