@@ -1,6 +1,5 @@
 import axios from "axios";
-import { userRequest } from "../requestMethods";
-import { addProducts, removeProduct } from "./CartSlice";
+// import { removeProduct } from "./CartSlice";
 import { loginFailure, loginStart, loginSucces } from "./UserSlice";
 
 export const login = async (dispatch, user) => {
@@ -16,15 +15,16 @@ export const login = async (dispatch, user) => {
   }
 };
 
-export const postCart = async (dispatch, productId) => {
-  try {
-    const response = await userRequest.post("/cart/addProduct", productId);
-    dispatch(addProducts(response.data));
-  } catch (error) {}
-};
-export const deleteCart = async (dispatch, id) => {
-  try {
-    await userRequest.delete(`/cart/${id}`, id);
-    dispatch(removeProduct(id));
-  } catch (error) {}
-};
+// export const postCart = async (userId, productId) => {
+//   try {
+//     const response = await userRequest.post(
+//       `/cart/addProduct/${userId}`,
+//       productId
+//     );
+//   } catch (error) {}
+// };
+// export const deleteCart = async (id) => {
+//   try {
+//     await userRequest.delete(`/cart/${id}`, id);
+//   } catch (error) {}
+// };

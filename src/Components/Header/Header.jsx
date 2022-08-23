@@ -3,15 +3,25 @@ import { cart, search } from "../../icons/index";
 import "./Header.css";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/UserSlice";
+import { useEffect, useState } from "react";
+import { userRequest } from "../../requestMethods";
 
 const Header = () => {
+  const [cartqty, setCartQty] = useState([]);
   const navigate = useNavigate();
-  const products = useSelector((state) => state.cart.products);
-  const quantity = products.length;
 
   const user = useSelector((state) => state.user.currentUser);
+  const quantity = user ? (cartqty?.length === 0 ? "" : cartqty?.length) : "";
   const dispatch = useDispatch();
-
+  useEffect(() => {
+    const getCart = async () => {
+      const response = user
+        ? await userRequest.get(`/cart/getCart/${user._id}`)
+        : "";
+      setCartQty(response.data);
+    };
+    getCart();
+  }, [user, cartqty]);
   const handleLogout = () => {
     dispatch(logout(null));
     navigate("/");

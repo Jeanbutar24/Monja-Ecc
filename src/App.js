@@ -37,7 +37,7 @@ const App = () => {
               <Route path="*" element={<Navigate to="/" replace />} />
             )}
             {user ? (
-              <Route path="profile" element={<Profile />} />
+              <Route path="profile/*" element={<Profile />} />
             ) : (
               <Route path="*" element={<Navigate to="/" replace />} />
             )}

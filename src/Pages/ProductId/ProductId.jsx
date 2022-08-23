@@ -4,10 +4,9 @@ import Header from "../../Components/Header/Header";
 import Footer from "../../Components/Footer/Footer";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { publicRequest } from "../../requestMethods";
+import { publicRequest, userRequest } from "../../requestMethods";
 import NewsLetter from "../../Components/NewsLetter/NewsLetter";
-import { useDispatch, useSelector } from "react-redux";
-import { postCart } from "../../redux/APIuser";
+import { useSelector } from "react-redux";
 
 const ProductId = () => {
   const location = useLocation();
@@ -18,7 +17,7 @@ const ProductId = () => {
   const [size, setSize] = useState("");
   const [color, setColor] = useState("");
   const user = useSelector((state) => state.user.currentUser);
-  const dispatch = useDispatch();
+
   const handleQuantity = (item) => {
     if (item === "plus") {
       setQuantity(quantity + 1);
@@ -40,16 +39,22 @@ const ProductId = () => {
   }, [id]);
 
   const addToCart = () => {
-    postCart(dispatch, {
-      userID: user._id,
-      productID: product._id,
-      quantity: quantity,
-      size: size,
-      color: color,
-      price: product.price,
-      img: product.img,
-      title: product.title,
-    });
+    const postCart = async () => {
+      try {
+        await userRequest.post(`/cart/addProduct/${user._id}`, {
+          productID: product._id,
+          price: product.price,
+          title: product.title,
+          img: product.img,
+          quantity,
+          color,
+          size,
+        });
+      } catch (error) {
+        alert(error);
+      }
+    };
+    postCart();
   };
   const price = product.price;
 

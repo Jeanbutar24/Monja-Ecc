@@ -1,0 +1,17 @@
+.chekoutSteps {
+  color: #c0c0c0;
+  display: flex;
+  justify-content: space-between;
+  padding: 4px;
+  margin-bottom: 16px;
+  margin-top: 16px;
+}
+.chekoutSteps > div {
+  flex: 1;
+  border-top: 0.3rem #c0c0c0 solid;
+}
+.chekoutSteps > div.active {
+  border-top: 0.3rem #f08000 solid;
+  color: #f08000;
+  font-weight: 600;
+}
