@@ -51,7 +51,7 @@ const ProductId = () => {
           size,
         });
       } catch (error) {
-        alert(error);
+        alert(error, "Please refresh this page");
       }
     };
     postCart();

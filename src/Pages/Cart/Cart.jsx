@@ -29,7 +29,7 @@ const Cart = () => {
     deleteCart();
   };
   const navigateTo = () => {
-    navigate("/profile/address");
+    cart.length > 0 ? navigate("/profile/address") : navigate("/cart");
   };
   const subTotal = cart.reduce((a, c) => a + c.quantity * c.price, 0);
   const total = subTotal + ongkir - discount;

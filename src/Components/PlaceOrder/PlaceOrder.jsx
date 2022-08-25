@@ -16,7 +16,15 @@ const PlaceOrder = () => {
   const onToken = (token) => {
     setStripeToken(token);
   };
-  const cart = [];
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    const getCart = async () => {
+      const response = await userRequest.get(`/cart/getCart/${user._id}`);
+      setCart(response.data);
+    };
+    getCart();
+  }, [user._id, cart]);
   const ongkir = cart.length > 0 ? 24000 : 0;
   const discount = cart.length > 0 ? 14000 : 0;
   useEffect(() => {
@@ -45,6 +53,10 @@ const PlaceOrder = () => {
     };
     stripeToken && makeRequest();
   }, [stripeToken, navigate]);
+
+  if (cart.length === 0) {
+    return navigate("/product");
+  }
   const handleRemove = (alamatId) => {
     const deleteAddress = async () => {
       await userRequest.delete(`/address/${user._id}/${alamatId}`);
@@ -83,30 +95,43 @@ const PlaceOrder = () => {
           </div>
           <div className="orderItem">
             <h3>Order Item</h3>
-            <ul>
-              <li>img</li>
-              <li>title</li>
-              <li>Price</li>
-            </ul>
+            {cart.map((item, index) => (
+              <ul>
+                <li>
+                  <img src={item.img} alt="" width={50} height={50} />
+                </li>
+                <li>{item.title}</li>
+                <li>{item.quantity}</li>
+                <li>{item.price}</li>
+              </ul>
+            ))}
           </div>
         </div>
         <div className="summaryOrder">
           <h1 className="summaryTitle">ORDER SUMMARY</h1>
           <div className="summaryItem">
             <span className="summaryItemText">Sub Total (2)</span>
-            <span className="summaryItemPrice">Rp ,00</span>
+            <span className="summaryItemPrice">
+              Rp {subTotal.toLocaleString()} ,00
+            </span>
           </div>
           <div className="summaryItem">
             <span className="summaryItemText"> Estimated Shipping</span>
-            <span className="summaryItemPrice">Rp ,00</span>
+            <span className="summaryItemPrice">
+              Rp {ongkir.toLocaleString()},00
+            </span>
           </div>
           <div className="summaryItem">
             <span className="summaryItemText">Shipping Discount</span>
-            <span className="summaryItemPrice">- Rp ,00</span>
+            <span className="summaryItemPrice">
+              - Rp {discount.toLocaleString()},00
+            </span>
           </div>
           <div className="summaryItem">
             <span className="summaryItemText">Total</span>
-            <span className="summaryItemPrice">Rp ,00</span>
+            <span className="summaryItemPrice">
+              Rp {total.toLocaleString()},00
+            </span>
           </div>
           <StripeCheckout
             name="Monja Collection"
